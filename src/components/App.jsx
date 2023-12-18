@@ -1,6 +1,6 @@
 // import { AddContact } from './AddContact/AddContact';
 import Login from '../pages/loginPage';
-import Register from '../pages/registerPagejsx';
+import Register from '../pages/registerPage.jsx';
 // import Contacts from './Contacts/Contacts';
 import ContactsPage from '../pages/contactsPage';
 // import { Filter } from './Filter/Filter';
