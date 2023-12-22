@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/operation';
+import { fetchAddContact } from '../../redux/operation';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 export const AddContact = () => {
@@ -13,7 +13,7 @@ export const AddContact = () => {
     const form = evt.currentTarget;
     const name1 = form.elements.name.value;
     const number1 = form.elements.number.value;
-    const contact = { name: name1, phone: number1 };
+    const contact = { name: name1, number: number1 };
     if (
       contacts.find(contact => contact.name.toLowerCase().trim() === name1.toLowerCase().trim())
     ) {
@@ -22,7 +22,7 @@ export const AddContact = () => {
       return;
     }
 
-    dispatch(addContact(contact));
+    dispatch(fetchAddContact(contact));
 
     evt.target.reset();
   };

@@ -1,7 +1,7 @@
-// const Register = () => {};
-// export default Register;
+// import axios from 'axios';
+import { fetchCreateUser } from '../redux/operation';
 import { useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,23 +9,25 @@ const Register = () => {
     email: '',
     password: '',
   });
-  const baseUrl = 'https://connections-api.herokuapp.com';
+  // const baseUrl = 'https://connections-api.herokuapp.com';
+  const dispatch = useDispatch();
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post(`${baseUrl}/users/signup`, formData);
-      console.log('Registration successful', response.data.id);
-      // Redirect or show success message
-    } catch (error) {
-      console.error('Registration failed', error.response.data);
-      // Handle registration error
-    }
+    dispatch(fetchCreateUser(formData));
   };
+  //   try {
+  //     const response = await axios.post(`${baseUrl}/users/signup`, formData);
+  //     console.log('Registration successful', response.data.id);
+  //     // Redirect or show success message
+  //   } catch (error) {
+  //     console.error('Registration failed', error.response.data);
+  //     // Handle registration error
+  //   }
+  // };
   console.log(formData.name);
   return (
     <form onSubmit={handleSubmit}>
