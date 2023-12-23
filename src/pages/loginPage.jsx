@@ -1,24 +1,23 @@
-// const Login = () => {
-//   return (
-//     <div>
-//       <input type='text' placeholder='name'></input>
-//       <input type='text' placeholder='password'></input>
-//     </div>
-//   );
-// };
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import axios from 'axios';
 // import localStorage from 'redux-persist/es/storage';
 import { fetchLoginUser } from '../redux/operation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../redux/selectors';
+import { useNavigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
   // const baseUrl = 'https://connections-api.herokuapp.com';
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector(getUser);
+  const navigate = useNavigate();
+
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -27,23 +26,37 @@ const Login = () => {
     e.preventDefault();
     dispatch(fetchLoginUser(formData));
   };
-  //   try {
-  //     const response = await axios.post(`${baseUrl}/users/login`, formData);
-  //     console.log('Login successful', response.data);
-  //     localStorage.setItem('token', response.data.token);
-  //     // Save token in local storage or state for authentication
-  //     // Redirect or show success message
-  //   } catch (error) {
-  //     console.error('Login failed', error.response.data);
-  //     // Handle login error
-  //   }
-  // };
-
+  useEffect(() => {
+    // Check if isLoggedIn changes
+    if (isLoggedIn) {
+      // Redirect to the home page after successful login
+      navigate('/contacts');
+    }
+  }, [isLoggedIn, navigate]);
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='email' name='email' value={formData.email} onChange={handleChange} />
-      <input type='password' name='password' value={formData.password} onChange={handleChange} />
-      <button type='submit'>Login</button>
+    <form onSubmit={handleSubmit} className='mb-2 flex flex-col items-start gap-4'>
+      <input
+        className='ml-6 rounded-lg bg-blue-500 px-2 text-white'
+        type='email'
+        name='email'
+        value={formData.email}
+        onChange={handleChange}
+        placeholder='email'
+      />
+      <input
+        className='ml-6 rounded-lg bg-blue-500 px-2 text-white'
+        type='password'
+        name='password'
+        value={formData.password}
+        onChange={handleChange}
+        placeholder='password'
+      />
+      <button
+        className='ml-auto rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-green-600 active:bg-rose-700'
+        type='submit'
+      >
+        Login
+      </button>
     </form>
   );
 };

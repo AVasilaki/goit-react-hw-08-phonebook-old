@@ -14,6 +14,9 @@ export const selectToken = state => {
 };
 export const selectFilter = state => state.filter.value;
 
+export const getUser = state => {
+  return state.user;
+};
 export const selecVisibletContacts = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) => {
