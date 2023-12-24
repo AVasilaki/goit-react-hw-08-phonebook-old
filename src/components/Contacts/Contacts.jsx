@@ -17,7 +17,7 @@ const Contacts = () => {
       <h2 className=' mb-4 text-3xl'>Contacts:</h2>
       <ul>
         {filtredContacts.map(({ id, name, number }) => (
-          <li key={id} className='mb-2 rounded-md border-2 p-4'>
+          <li key={id} className='mb-2 rounded-lg border-4 border-gray-500 p-4'>
             <p>
               {name}: {number}
             </p>

@@ -11,9 +11,14 @@ export const UserMenu = () => {
   };
   console.log(email);
   return (
-    <div>
-      <p>{email}</p>
-      <button onClick={handleLogOut}>Logout</button>
+    <div className='mb-12'>
+      <p className='mb-4'> You are registered as : {email}</p>
+      <button
+        className='ml-auto rounded-lg bg-blue-500 p-1 text-white hover:bg-green-600 active:bg-rose-700'
+        onClick={handleLogOut}
+      >
+        Logout
+      </button>
     </div>
   );
 };
