@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import localStorage from 'redux-persist/es/storage';
 import { fetchLoginUser } from '../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../redux/selectors';
 import { useNavigate } from 'react-router-dom';
-// import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +10,6 @@ const Login = () => {
     password: '',
   });
 
-  // const baseUrl = 'https://connections-api.herokuapp.com';
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(getUser);
   const navigate = useNavigate();
@@ -27,9 +23,7 @@ const Login = () => {
     dispatch(fetchLoginUser(formData));
   };
   useEffect(() => {
-    // Check if isLoggedIn changes
     if (isLoggedIn) {
-      // Redirect to the home page after successful login
       navigate('/contacts');
     }
   }, [isLoggedIn, navigate]);

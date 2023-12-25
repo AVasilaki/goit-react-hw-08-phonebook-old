@@ -1,7 +1,5 @@
 import toast from 'react-hot-toast';
 import { createSlice } from '@reduxjs/toolkit';
-// const { createSlice } = require('@reduxjs/toolkit');
-// const { fetchCreateUser, fetchLoginUser, refreshUser } = require('./operations');
 import { fetchCreateUser, fetchLoginUser, refreshUser } from './operation';
 
 const loginInitialState = {

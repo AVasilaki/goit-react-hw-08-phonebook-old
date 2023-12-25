@@ -1,6 +1,5 @@
 import Login from '../pages/loginPage';
 import Register from '../pages/registerPage.jsx';
-
 import ContactsPage from '../pages/contactsPage';
 import { refreshUser } from '../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
