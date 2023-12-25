@@ -9,7 +9,7 @@ export const UserMenu = () => {
   const handleLogOut = () => {
     dispatch(logOut());
   };
-  console.log(email);
+
   return (
     <div className='mb-12'>
       <p className='mb-4'> You are registered as : {email}</p>

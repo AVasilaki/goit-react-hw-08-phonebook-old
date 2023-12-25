@@ -12,7 +12,6 @@ const ContactsPage = () => {
   const error = useSelector(selectError);
   const token = useSelector(selectToken);
   useEffect(() => {
-    // dispatch(refreshUser());
     dispatch(fetchGetContacts(token));
   }, [dispatch, token]);
   return (

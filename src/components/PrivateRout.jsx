@@ -4,9 +4,7 @@ import { getUser } from '../redux/selectors';
 
 const PrivatRoots = () => {
   const { isLoggedIn } = useSelector(getUser);
-  console.log(isLoggedIn);
-
-  return isLoggedIn ? <Outlet></Outlet> : <Navigate to={'/login'}></Navigate>;
+    return isLoggedIn ? <Outlet></Outlet> : <Navigate to={'/login'}></Navigate>;
 };
 
 export default PrivatRoots;
