@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../redux/selectors';
 import { logOut } from '../redux/authSlice';
+import { contactsClear } from '../redux/contactsSlice';
+
 export const UserMenu = () => {
   const {
     user: { email },
@@ -8,6 +10,7 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(logOut());
+    dispatch(contactsClear());
   };
 
   return (

@@ -9,7 +9,11 @@ const contactsSlice1 = createSlice({
     isLoading: false,
     error: null,
   },
-
+  reducers: {
+    contactsClear(state) {
+      state.items = [];
+    },
+  },
   extraReducers: builder => {
     builder
 
@@ -54,3 +58,4 @@ const contactsSlice1 = createSlice({
 });
 
 export const contactsReducer = contactsSlice1.reducer;
+export const { contactsClear } = contactsSlice1.actions;
