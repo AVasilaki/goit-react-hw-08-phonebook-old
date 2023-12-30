@@ -53,6 +53,7 @@ const registerSlise = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isRegestered = true;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
