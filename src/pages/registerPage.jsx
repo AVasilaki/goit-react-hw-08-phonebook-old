@@ -1,7 +1,8 @@
-
 import { fetchCreateUser } from '../redux/operation';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../redux/selectors';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +10,10 @@ const Register = () => {
     email: '',
     password: '',
   });
-  
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isRegestered } = useSelector(getUser);
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -19,7 +22,11 @@ const Register = () => {
     e.preventDefault();
     dispatch(fetchCreateUser(formData));
   };
-  
+  useEffect(() => {
+    if (isRegestered) {
+      navigate('/login');
+    }
+  }, [isRegestered, navigate]);
   console.log(formData.name);
   return (
     <form onSubmit={handleSubmit} className='mb-2 flex flex-col items-start gap-4'>

@@ -8,6 +8,7 @@ const loginInitialState = {
     email: '',
   },
   authorizationToken: null,
+  isRegestered: false,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -20,6 +21,7 @@ const registerSlise = createSlice({
       state.authorizationToken = null;
       state.user = { name: '', email: '' };
       state.isLoggedIn = false;
+      state.isRegestered = false;
     },
   },
   extraReducers: builder => {
@@ -27,7 +29,7 @@ const registerSlise = createSlice({
       .addCase(fetchCreateUser.fulfilled, (state, action) => {
         state.authorizationToken = action.payload.token;
         state.user = action.payload.user;
-        state.isLoggedIn = true;
+        state.isRegestered = true;
         state.authorizationToken = true;
         toast.success('registration was successful');
       })
@@ -39,6 +41,7 @@ const registerSlise = createSlice({
         state.authorizationToken = action.payload.token;
         state.user = action.payload.user;
         state.isLoggedIn = true;
+        state.isRegestered = true;
       })
       .addCase(fetchLoginUser.rejected, () => {
         toast.error('Invalid email or password');

@@ -12,7 +12,7 @@ import Home from '../pages/homePage.jsx';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoggedIn } = useSelector(getUser);
+  const { isRefreshing, isLoggedIn, isRegestered } = useSelector(getUser);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -26,7 +26,10 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={isLoggedIn ? <Navigate to='/contacts' /> : <Login />}></Route>
-        <Route path='/register' element={isLoggedIn ? <Navigate to='/' /> : <Register />}></Route>
+        <Route
+          path='/register'
+          element={isRegestered ? <Navigate to='/login' /> : <Register />}
+        ></Route>
         <Route element={<PrivatRoots></PrivatRoots>}>
           <Route path='/contacts' element={<ContactsPage />}></Route>
         </Route>
