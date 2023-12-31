@@ -1,14 +1,18 @@
-import Login from '../pages/loginPage';
-import Register from '../pages/registerPage.jsx';
-import ContactsPage from '../pages/contactsPage';
+// import Login from '../pages/loginPage';
+// import Register from '../pages/registerPage.jsx';
+// import ContactsPage from '../pages/contactsPage';
 import { refreshUser } from '../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { NavMenu } from './navLink/NavLink';
 import { getUser } from '../redux/selectors.js';
 import PrivatRoots from './PrivateRout.jsx';
-import Home from '../pages/homePage.jsx';
+// import Home from '../pages/homePage.jsx';
+const Home = lazy(() => import('../pages/homePage.jsx'));
+const ContactsPage = lazy(() => import('../pages/contactsPage.jsx'));
+const Register = lazy(() => import('../pages/registerPage.jsx'));
+const Login = lazy(() => import('../pages/loginPage.jsx'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,17 +27,22 @@ export const App = () => {
   ) : (
     <>
       <NavMenu></NavMenu>
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/login' element={isLoggedIn ? <Navigate to='/contacts' /> : <Login />}></Route>
-        <Route
-          path='/register'
-          element={isRegestered ? <Navigate to='/login' /> : <Register />}
-        ></Route>
-        <Route element={<PrivatRoots></PrivatRoots>}>
-          <Route path='/contacts' element={<ContactsPage />}></Route>
-        </Route>
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route
+            path='/login'
+            element={isLoggedIn ? <Navigate to='/contacts' /> : <Login />}
+          ></Route>
+          <Route
+            path='/register'
+            element={isRegestered ? <Navigate to='/login' /> : <Register />}
+          ></Route>
+          <Route element={<PrivatRoots></PrivatRoots>}>
+            <Route path='/contacts' element={<ContactsPage />}></Route>
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 };

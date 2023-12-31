@@ -10,6 +10,7 @@ const Home = () => {
       className=' my-12  w-96  pb-[500px] pl-12 pt-12'
     >
       <h1 className=' text-5xl text-gray-500'>Phonebook</h1>
+      <p>this is the best phonecook in The World</p>
     </div>
   );
 };
