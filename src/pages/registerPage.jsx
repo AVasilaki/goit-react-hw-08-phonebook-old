@@ -27,7 +27,7 @@ const Register = () => {
       navigate('/login');
     }
   }, [isRegestered, navigate]);
-  console.log(formData.name);
+
   return (
     <form onSubmit={handleSubmit} className='mb-2 flex flex-col items-start gap-4'>
       <input

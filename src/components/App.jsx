@@ -1,6 +1,4 @@
-// import Login from '../pages/loginPage';
-// import Register from '../pages/registerPage.jsx';
-// import ContactsPage from '../pages/contactsPage';
+
 import { refreshUser } from '../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
@@ -8,7 +6,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { NavMenu } from './navLink/NavLink';
 import { getUser } from '../redux/selectors.js';
 import PrivatRoots from './PrivateRout.jsx';
-// import Home from '../pages/homePage.jsx';
+
 const Home = lazy(() => import('../pages/homePage.jsx'));
 const ContactsPage = lazy(() => import('../pages/contactsPage.jsx'));
 const Register = lazy(() => import('../pages/registerPage.jsx'));
