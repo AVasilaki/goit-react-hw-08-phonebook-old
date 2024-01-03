@@ -1,4 +1,3 @@
-
 import { refreshUser } from '../redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
@@ -14,7 +13,7 @@ const Login = lazy(() => import('../pages/loginPage.jsx'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoggedIn, isRegestered } = useSelector(getUser);
+  const { isRefreshing, isRegestered } = useSelector(getUser);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -28,10 +27,7 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route
-            path='/login'
-            element={isLoggedIn ? <Navigate to='/contacts' /> : <Login />}
-          ></Route>
+          <Route path='/login' element={<Login />}></Route>
           <Route
             path='/register'
             element={isRegestered ? <Navigate to='/login' /> : <Register />}
